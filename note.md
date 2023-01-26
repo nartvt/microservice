@@ -1,0 +1,3 @@
+- có cơ sở dữ liệu riêng
+- có tính độc lập
+- có thể sử dụng nhiều công nghệ khác nhau ở mỗi service
