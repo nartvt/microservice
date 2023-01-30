@@ -22,22 +22,19 @@ public class BookEventHandler {
 
     @EventHandler
     public void on(UpdateBookEvent event) {
-        System.out.println("25 - " + event.getBookId());
-        try {
-            final Book book = bookRepository.getReferenceById(event.getBookId());
-            System.out.println("28 - " + book);
-            book.setAuthor(event.getAuthor());
-            book.setName(event.getName());
-            book.setReady(event.isReady());
-            bookRepository.save(book);
-        } catch (Exception e) {
-            System.out.println("34 - " + e.getMessage());
-            System.out.println(e.getMessage());
-        }
+        final Book book = bookRepository.getReferenceById(event.getBookId());
+        book.setAuthor(event.getAuthor());
+        book.setName(event.getName());
+        book.setReady(event.isReady());
+        bookRepository.save(book);
     }
 
     @EventHandler
     public void on(DeleteBookEvent event) {
-        bookRepository.deleteById(event.getBookId());
+        final Book book = bookRepository.getReferenceById(event.getBookId());
+        if (book == null) {
+            return;
+        }
+        bookRepository.deleteById(book.getBookId());
     }
 }

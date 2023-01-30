@@ -25,29 +25,26 @@ public class BookCommandController {
                 UUID.randomUUID().toString(),
                 model.getName(),
                 model.getAuthor(),
-                true);
+                model.isReady());
         commandGateway.sendAndWait(command);
-        return ResponseEntity.ok("addBook");
+        return ResponseEntity.ok("created Book");
     }
 
     @PutMapping
     public ResponseEntity<String> updateBook(@RequestBody BookRequestModel model) {
-        System.out.println("Controller 34 - book Id - " + model.getBookId());
         final UpdateBookCommand command = new UpdateBookCommand(
                 model.getBookId(),
                 model.getName(),
                 model.getAuthor(),
-                true);
-        System.out.println("40 Controller - book Id - " + command.getBookId());
-        commandGateway.sendAndWait(command);
-        System.out.println("43 Controller - book Id - " + model.getBookId());
-        return ResponseEntity.ok("updateBook");
+                model.isReady());
+            commandGateway.sendAndWait(command);
+        return ResponseEntity.ok("updated Book");
     }
 
     @DeleteMapping("/{bookId}")
     public ResponseEntity<String> deleteBook(@PathVariable String bookId) {
         final DeleteBookCommand command = new DeleteBookCommand(bookId);
         commandGateway.sendAndWait(command);
-        return ResponseEntity.ok("deletedBook");
+        return ResponseEntity.ok("deleted Book");
     }
 }

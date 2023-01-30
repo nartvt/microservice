@@ -6,7 +6,9 @@ import com.bookservice.bookservice.command.command.UpdateBookCommand;
 import com.bookservice.bookservice.command.event.CreateBookEvent;
 import com.bookservice.bookservice.command.event.DeleteBookEvent;
 import com.bookservice.bookservice.command.event.UpdateBookEvent;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -18,6 +20,8 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookAggregate {
     @AggregateIdentifier
     private String bookId;
@@ -25,27 +29,20 @@ public class BookAggregate {
     private String author;
     private boolean isReady;
 
-    protected BookAggregate() {
-        // Required by Axon to build a default Aggregate prior to Event Sourcing
-    }
-
     @CommandHandler
-    public BookAggregate(CreateBookCommand createBookCommand) {
-        final CreateBookEvent createBookEvent = new CreateBookEvent();
-        BeanUtils.copyProperties(createBookCommand, createBookEvent);
-        AggregateLifecycle.apply(createBookEvent);
+    public BookAggregate(CreateBookCommand command) {
+        final CreateBookEvent event = new CreateBookEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
     }
 
     @CommandHandler
     public void handle(UpdateBookCommand command) {
-        System.out.println("40 - aggregate" + command.getBookId());
-        UpdateBookEvent event = new UpdateBookEvent();
-        System.out.println("41 - aggregate" + command.getBookId());
+        final UpdateBookEvent event = new UpdateBookEvent();
         event.setBookId(command.getBookId());
         event.setName(command.getName());
         event.setAuthor(command.getAuthor());
         event.setReady(command.isReady());
-        System.out.println("43 - aggregate" + event.getBookId());
         AggregateLifecycle.apply(event);
     }
 

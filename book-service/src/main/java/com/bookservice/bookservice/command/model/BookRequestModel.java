@@ -1,8 +1,11 @@
 package com.bookservice.bookservice.command.model;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookRequestModel {
     private String bookId;
     private String name;
