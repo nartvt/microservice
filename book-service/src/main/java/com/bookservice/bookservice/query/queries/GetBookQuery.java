@@ -1,4 +1,4 @@
-package com.bookservice.bookservice.command.event;
+package com.bookservice.bookservice.query.queries;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateBookEvent {
+public class GetBookQuery {
     private String bookId;
-    private String name;
-    private String author;
-    private boolean isReady;
 }

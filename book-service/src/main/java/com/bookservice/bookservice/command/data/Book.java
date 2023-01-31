@@ -1,6 +1,6 @@
 package com.bookservice.bookservice.command.data;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +8,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "books")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     private String bookId;

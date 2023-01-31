@@ -42,7 +42,7 @@ public class BookCommandController {
     }
 
     @DeleteMapping("/{bookId}")
-    public ResponseEntity<String> deleteBook(@PathVariable String bookId) {
+    public ResponseEntity<String> deleteBook(@PathVariable("bookId") String bookId) {
         final DeleteBookCommand command = new DeleteBookCommand(bookId);
         commandGateway.sendAndWait(command);
         return ResponseEntity.ok("deleted Book");
