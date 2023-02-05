@@ -12,9 +12,9 @@ import javax.persistence.EntityNotFoundException;
 
 @Component
 public class BookEventHandler {
-    private IBookRepository bookRepository;
+    private final IBookRepository bookRepository;
 
-    public BookEventHandler(IBookRepository bookRepository){
+    public BookEventHandler(final IBookRepository bookRepository){
         this.bookRepository = bookRepository;
     }
 

@@ -9,9 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookResponseModel {
-    private String bookId;
-    private String name;
-    private String author;
-    private boolean isReady;
+public class ResponseModel {
+    private Object data;
 }
