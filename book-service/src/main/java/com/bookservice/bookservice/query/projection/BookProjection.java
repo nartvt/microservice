@@ -1,26 +1,25 @@
 package com.bookservice.bookservice.query.projection;
 
-import com.bookservice.bookservice.command.data.Book;
-import com.bookservice.bookservice.command.data.IBookRepository;
-import com.bookservice.bookservice.query.model.BookResponse;
-import com.bookservice.bookservice.query.model.ResponseModel;
-import com.bookservice.bookservice.query.queries.GetBookQuery;
-import com.bookservice.bookservice.query.queries.GetBooksQueries;
-import org.axonframework.queryhandling.QueryHandler;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.axonframework.queryhandling.QueryHandler;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+import com.bookservice.bookservice.command.data.Book;
+import com.bookservice.bookservice.command.data.IBookRepository;
+import com.bookservice.bookservice.query.model.BookResponse;
+import com.bookservice.bookservice.query.queries.GetBookQuery;
+import com.bookservice.bookservice.query.queries.GetBooksQueries;
 
 @Component
 public class BookProjection {
 
     private IBookRepository bookRepository;
 
-    public BookProjection(IBookRepository bookRepository){
+    public BookProjection(IBookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

@@ -1,12 +1,13 @@
-package com.bookservice.bookservice;
+package com.nartvt.employeeservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BookServiceApplication {
+public class EmployeeServiceApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(BookServiceApplication.class, args);
+        SpringApplication.run(EmployeeServiceApplication.class, args);
     }
 
 }

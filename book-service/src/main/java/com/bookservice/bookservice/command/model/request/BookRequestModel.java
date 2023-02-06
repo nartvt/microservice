@@ -1,4 +1,4 @@
-package com.bookservice.bookservice.command.model;
+package com.bookservice.bookservice.command.model.request;
 
 import lombok.*;
 

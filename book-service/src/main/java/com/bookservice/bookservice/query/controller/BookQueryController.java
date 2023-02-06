@@ -28,10 +28,11 @@ public class BookQueryController {
         final GetBookQuery getBookQuery = new GetBookQuery();
         getBookQuery.setBookId(bookId);
         final BookResponse responseModel = queryGateway.query(getBookQuery,
-                ResponseTypes.instanceOf(BookResponse.class))
+                        ResponseTypes.instanceOf(BookResponse.class))
                 .join();
         return ResponseEntity.ok(new ResponseModel(responseModel));
     }
+
     @GetMapping
     public ResponseEntity<ResponseModel> getBooks() {
         final GetBooksQueries getBookQuery = new GetBooksQueries();

@@ -10,8 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateBookEvent {
-    private String bookId;
-    private String name;
-    private String author;
-    private boolean isReady;
+	private String bookId;
+	private String name;
+	private String author;
+	private boolean isReady;
 }

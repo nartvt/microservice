@@ -3,7 +3,7 @@ package com.bookservice.bookservice.command.controller;
 import com.bookservice.bookservice.command.command.CreateBookCommand;
 import com.bookservice.bookservice.command.command.DeleteBookCommand;
 import com.bookservice.bookservice.command.command.UpdateBookCommand;
-import com.bookservice.bookservice.command.model.BookRequestModel;
+import com.bookservice.bookservice.command.model.request.BookRequestModel;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +37,7 @@ public class BookCommandController {
                 model.getName(),
                 model.getAuthor(),
                 model.isReady());
-            commandGateway.sendAndWait(command);
+        commandGateway.sendAndWait(command);
         return ResponseEntity.ok("updated Book");
     }
 

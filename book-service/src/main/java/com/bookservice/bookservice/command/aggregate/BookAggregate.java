@@ -63,7 +63,7 @@ public class BookAggregate {
 
     @EventSourcingHandler
     public void on(UpdateBookEvent event) {
-        this.bookId =  event.getBookId();
+        this.bookId = event.getBookId();
         this.name = event.getName();
         this.isReady = event.isReady();
         this.author = event.getAuthor();
