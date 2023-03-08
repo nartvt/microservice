@@ -2,7 +2,6 @@ package handler
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -23,7 +22,6 @@ func (s BodyRecordHandler) GetBodyRecordsByUserId(ctx *fiber.Ctx) error {
 		return ctx.Status(http.StatusBadRequest).
 			JSON(err)
 	}
-	log.Printf("body-records %d\n", param.UserId)
 	bodyRecords, err := s.BodyRecordDomain.GetUserBodyRecordRepoByUserId(param.UserId, param.Limit, param.Offset)
 	if err != nil {
 		return ctx.Status(http.StatusInternalServerError).
@@ -36,7 +34,7 @@ func (s BodyRecordHandler) GetBodyRecordsByUserId(ctx *fiber.Ctx) error {
 	if len(bodyRecords) < param.Limit {
 		return ctx.Status(http.StatusOK).JSON(resp)
 	}
-	nextUrl := fmt.Sprintf("%s?limit=%s&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
+	nextUrl := fmt.Sprintf("%s?limit=%d&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
 	resp.Pagination = &transport.Pagination{
 		NextUrl: nextUrl,
 	}

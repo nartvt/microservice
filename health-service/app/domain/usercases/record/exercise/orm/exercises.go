@@ -20,7 +20,7 @@ func (u userExercise) GetUserExciseByUserId(userId int, limit int, offset int) (
 		return []entities.UserExercise{}, nil
 	}
 	resp := []entities.UserExercise{}
-	err := db.Postgres.Model(&entities.UserExercise{}).
+	err := db.DB().Model(&entities.UserExercise{}).
 		Where("user_id = ?", userId).
 		Limit(limit).
 		Offset(offset).Order("id DESC").

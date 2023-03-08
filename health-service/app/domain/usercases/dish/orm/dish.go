@@ -26,9 +26,9 @@ func (d dish) CreateDishTx(newDish *entities.Dish, tx *gorm.DB) error {
 func (d dish) GetDishBySectionId(sectionId int, limit int, offset int) ([]entities.Dish, int, error) {
 	var resp []entities.Dish
 	total := int64(0)
-	err := db.Postgres.Model(&entities.Dish{}).
-		Joins("JOIN section_dishes ON dishes.id = section_dishes.dish_id").
-		Joins("JOIN newsfeed_sections ON section_dishes.section_id = newsfeed_sections.id").
+	err := db.DB().Model(&entities.Dish{}).
+		InnerJoins("JOIN section_dishes ON dishes.id = section_dishes.dish_id").
+		InnerJoins("JOIN newsfeed_sections ON section_dishes.section_id = newsfeed_sections.id").
 		Where("newsfeed_sections.active = TRUE").
 		Where("dishes.active = TRUE").
 		Where("type = ?", common.NewsfeedSectionTypeTopPage).

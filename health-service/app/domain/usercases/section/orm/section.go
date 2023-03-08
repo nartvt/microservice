@@ -19,7 +19,7 @@ func init() {
 
 func (n newsfeedSection) GetSections(limit int, offset int) ([]entities.NewsfeedSection, error) {
 	resp := []entities.NewsfeedSection{}
-	err := db.Postgres.Model(&entities.NewsfeedSection{}).
+	err := db.DB().Model(&entities.NewsfeedSection{}).
 		Where("active = TRUE").
 		Limit(limit).
 		Offset(offset).
@@ -30,7 +30,7 @@ func (n newsfeedSection) GetSections(limit int, offset int) ([]entities.Newsfeed
 
 func (n newsfeedSection) GetSectionsById(id int) (*entities.NewsfeedSection, error) {
 	resp := &entities.NewsfeedSection{}
-	err := db.Postgres.Model(&entities.NewsfeedSection{}).
+	err := db.DB().Model(&entities.NewsfeedSection{}).
 		Where("active = TRUE").
 		Where("id = ?", id).
 		Find(resp).

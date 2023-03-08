@@ -1,7 +1,6 @@
 package repo
 
 import (
-	"log"
 	"time"
 
 	"health-service/app/domain/entities"
@@ -29,13 +28,10 @@ func NewUserBodyRecordRepo() *userBodyRecordRepo {
 }
 
 func (u userBodyRecordRepo) GetUserBodyRecordRepoByUserId(userId int, limit int, offset int) ([]UserBodyRecordRepo, error) {
-	log.Printf("body-records repo %d\n", userId)
 	bodyEntities, err := orm.UserBodyRecord.GetBodyRecordByUserId(userId, limit, offset)
 	if err != nil {
 		return []UserBodyRecordRepo{}, uerror.InternalError(err, err.Error())
 	}
-
-	log.Printf("body-records repo size %d\n", len(bodyEntities))
 	return u.populateUserBodyRecords(bodyEntities), nil
 }
 

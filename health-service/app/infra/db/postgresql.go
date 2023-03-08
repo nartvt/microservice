@@ -4,13 +4,14 @@ import (
 	"fmt"
 
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 
 	"gorm.io/driver/postgres"
 
 	"health-service/app/config"
 )
 
-var Postgres *gorm.DB
+var postgresDB *gorm.DB
 
 func InitPostgres() {
 	conf := config.Config
@@ -21,15 +22,23 @@ func InitPostgres() {
 		conf.Posgres.Port,
 		conf.Posgres.Database,
 	)
+
 	var err error
-	Postgres, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	postgresDB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
 	if err != nil {
 		panic(err)
 	}
 }
-
+func DB() *gorm.DB {
+	if postgresDB == nil {
+		InitPostgres()
+	}
+	return postgresDB
+}
 func ClosePostgres() {
-	if db, _ := Postgres.DB(); db != nil {
+	if db, _ := postgresDB.DB(); db != nil {
 		if err := db.Close(); err != nil {
 			fmt.Println("[ERROR] Cannot close mysql connection, err:", err)
 		}

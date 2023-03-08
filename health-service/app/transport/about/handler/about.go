@@ -40,7 +40,7 @@ func (s AboutHandler) GetAboutBySectionId(ctx *fiber.Ctx) error {
 	if len(abouts) < param.Limit {
 		return ctx.Status(http.StatusOK).JSON(resp)
 	}
-	nextUrl := fmt.Sprintf("%s?limit=%s&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
+	nextUrl := fmt.Sprintf("%s?limit=%d&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
 	resp.Pagination = &transport.Pagination{
 		NextUrl: nextUrl,
 		Total:   total,

@@ -30,8 +30,8 @@ CREATE TABLE "section_dishes"
     "dish_id"    INT,
     PRIMARY KEY (section_id, dish_id)
 );
-CREATE INDEX CONCURRENTLY dishes_dish_id_idx ON section_dishes (dish_id);
-CREATE INDEX CONCURRENTLY dishes_section_id_idx ON section_dishes (section_id);
+CREATE INDEX CONCURRENTLY section_dishes_dish_id_idx ON section_dishes (dish_id);
+CREATE INDEX CONCURRENTLY section_dishes_section_id_idx ON section_dishes (section_id);
 
 
 CREATE TABLE "users"
@@ -141,13 +141,13 @@ INSERT INTO section_dishes(section_id, dish_id)
 VALUES (1, 2),
        (1, 4),
        (1, 6),
-       (4, 1),
-       (4, 3),
-       (4, 5),
-       (7, 8),
-       (7, 10),
-       (10, 7),
-       (10, 9);
+       (2, 1),
+       (2, 3),
+       (2, 5),
+       (3, 8),
+       (3, 10),
+       (4, 7),
+       (4, 9);
 
 INSERT INTO users (username, password, email, phone_number, full_name)
 VALUES ('user1', 'password1', 'user1@example.com', '12345678901', 'User One'),
@@ -170,15 +170,15 @@ INSERT INTO user_body_records (user_id, weight, height, percentage) VALUES (5, 7
 
 INSERT INTO user_exercises (user_id, at_time, description, calories_burned) VALUES (1, 8, 'Running', 200);
 INSERT INTO user_exercises (user_id, at_time, description, calories_burned) VALUES (2, 9, 'Cycling', 250);
-INSERT INTO user_exercises (user_id, at_time, description, calories_burned)VALUES (3, 10, 'Swimming', 300);
+INSERT INTO user_exercises (user_id, at_time, description, calories_burned) VALUES (3, 10, 'Swimming', 300);
 INSERT INTO user_exercises (user_id, at_time, description, calories_burned) VALUES (4, 11, 'Yoga', 150);
 INSERT INTO user_exercises (user_id, at_time, description, calories_burned) VALUES (5, 12, 'Walking', 100);
 
-INSERT INTO user_diaries (user_id, at_time, description, calories) VALUES (1, 8, 'Breakfast - Oatmeal', 200);
+INSERT INTO user_diaries (user_id, at_time, description, calories)VALUES (1, 8, 'Breakfast - Oatmeal', 200);
 INSERT INTO user_diaries (user_id, at_time, description, calories) VALUES (2, 9, 'Lunch - Grilled Chicken Salad', 300);
 INSERT INTO user_diaries (user_id, at_time, description, calories) VALUES (3, 10, 'Dinner - Salmon with vegetables', 400);
 INSERT INTO user_diaries (user_id, at_time, description, calories) VALUES (4, 11, 'Snack - Apple and Peanut Butter', 150);
-INSERT INTO user_diaries (user_id, at_time, description, calories)VALUES (5, 12, 'Breakfast - Scrambled Eggs with Toast', 250);
+INSERT INTO user_diaries (user_id, at_time, description, calories) VALUES (5, 12, 'Breakfast - Scrambled Eggs with Toast', 250);
 
 INSERT INTO abouts (name, image, active) VALUES ('Workouts', 'workouts.jpg', true);
 INSERT INTO abouts (name, image, active) VALUES ('Diets', 'diets.jpg', true);

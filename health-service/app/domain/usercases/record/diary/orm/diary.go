@@ -20,7 +20,7 @@ func (u userDiary) GetUserDiaryByUserId(userId int, limit int, offset int) ([]en
 		return []entities.UserDiary{}, nil
 	}
 	resp := []entities.UserDiary{}
-	err := db.Postgres.Model(&entities.UserDiary{}).
+	err := db.DB().Model(&entities.UserDiary{}).
 		Where("user_id = ?", userId).
 		Limit(limit).
 		Offset(offset).Order("id DESC").

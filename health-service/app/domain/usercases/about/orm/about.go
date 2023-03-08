@@ -19,7 +19,7 @@ func init() {
 func (a about) GetAboutBySectionId(sectionId int, limit int, offset int) ([]entities.About, int, error) {
 	resp := []entities.About{}
 	total := int64(0)
-	err := db.Postgres.Model(&entities.About{}).
+	err := db.DB().Model(&entities.About{}).
 		Joins("JOIN sections_about ON abouts.id = sections_about.about_id").
 		Joins("JOIN newsfeed_sections ON sections_about.section_id = newsfeed_sections.id").
 		Where("newsfeed_sections.active = TRUE").

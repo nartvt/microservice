@@ -50,13 +50,13 @@ func (s DishHandler) GetDishBySectionId(ctx *fiber.Ctx) error {
 	resp := transport.Response{
 		Data: response.NewDishResponses(dishes),
 	}
-	if len(dishes) < param.Limit {
+	if len(dishes) >= param.Limit {
+		nextUrl := fmt.Sprintf("%s?limit=%d&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
+		resp.Pagination = &transport.Pagination{
+			NextUrl: nextUrl,
+			Total:   total,
+		}
 		return ctx.Status(http.StatusOK).JSON(resp)
-	}
-	nextUrl := fmt.Sprintf("%s?limit=%s&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
-	resp.Pagination = &transport.Pagination{
-		NextUrl: nextUrl,
-		Total:   total,
 	}
 	return ctx.Status(http.StatusOK).JSON(resp)
 }

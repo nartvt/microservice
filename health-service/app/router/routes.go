@@ -51,11 +51,12 @@ func SetupRoutes(app *fiber.App) {
 	v1.Use(middleware.RateLimit())
 
 	groupNewsfeedSection := v1.Group("/newsfeed/sections")
+	groupNewsfeedSection.Use(middleware.RequireLogin())
 	{
 		GET(groupNewsfeedSection, "", groupSectionHandler.GetSections)
 	}
 
-	groupDishes := v1.Group("dishes")
+	groupDishes := groupNewsfeedSection.Group("dishes")
 	{
 		GET(groupDishes, "", groupDishHandler.CreateDish)
 		GET(groupDishes, "/:sectionId", groupDishHandler.GetDishBySectionId)

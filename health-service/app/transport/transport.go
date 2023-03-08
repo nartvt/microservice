@@ -7,7 +7,7 @@ const (
 
 	ParamUserId = "userId"
 
-	DefaultLimit = 8
+	DefaultLimit = 2
 	DefgaultPage = 1
 )
 

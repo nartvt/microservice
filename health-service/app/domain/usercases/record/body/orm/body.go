@@ -1,8 +1,6 @@
 package orm
 
 import (
-	"log"
-
 	"health-service/app/domain/entities"
 	"health-service/app/infra/db"
 )
@@ -18,9 +16,8 @@ func init() {
 	UserBodyRecord = userBodyRecord{}
 }
 func (u userBodyRecord) GetBodyRecordByUserId(userId int, limit int, offset int) ([]entities.UserBodyRecord, error) {
-	log.Printf("body-records orm %d\n", userId)
 	resp := []entities.UserBodyRecord{}
-	query := db.Postgres.Model(&entities.UserBodyRecord{}).
+	query := db.DB().Model(&entities.UserBodyRecord{}).
 		Limit(limit).
 		Offset(offset).Order("id DESC")
 	if userId > 0 {

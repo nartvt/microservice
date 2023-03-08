@@ -37,7 +37,7 @@ func (s ExerciseHandler) GetExerciseByUserId(ctx *fiber.Ctx) error {
 	if len(bodyRecords) < param.Limit {
 		return ctx.Status(http.StatusOK).JSON(resp)
 	}
-	nextUrl := fmt.Sprintf("%s?limit=%s&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
+	nextUrl := fmt.Sprintf("%s?limit=%d&page=%d", ctx.OriginalURL(), param.Limit, param.Page+1)
 	resp.Pagination = &transport.Pagination{
 		NextUrl: nextUrl,
 	}

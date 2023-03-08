@@ -10,6 +10,12 @@ var Config config
 
 type config struct {
 	Posgres DBConnectInfo
+	auth
+}
+
+type auth struct {
+	SecretKey  string
+	ExpireTime int
 }
 
 type DBConnectInfo struct {

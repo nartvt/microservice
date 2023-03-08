@@ -2,6 +2,7 @@ package common
 
 import (
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 
 	"health-service/app/infra/db"
 )
@@ -13,7 +14,7 @@ const (
 )
 
 func BeginTx() *gorm.DB {
-	return db.Postgres.Begin()
+	return db.DB().Session(&gorm.Session{Logger: logger.Default.LogMode(logger.Info)}).Begin()
 }
 
 func RecoveryTx(tx *gorm.DB) {

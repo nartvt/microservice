@@ -12,3 +12,8 @@ type Dish struct {
 	UpdatedAt *time.Time
 	Active    bool
 }
+
+type SectionDish struct {
+	SectionId int
+	DishId    int
+}
