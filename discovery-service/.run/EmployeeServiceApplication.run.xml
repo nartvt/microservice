@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="EmployeeServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="com.nartvt.employeeservice.employee-service.main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.nartvt.employeeservice.EmployeeServiceApplication" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-    </method>
-  </configuration>
-</component>
